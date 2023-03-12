@@ -6,10 +6,10 @@ import { SnackbarList } from '@wordpress/components';
 
 export default function Notices() {
 	const notices = useSelect(
-		( select ) =>
+		( select:any ) =>
 			select( 'core/notices' )
 				.getNotices()
-				.filter( ( notice ) => notice.type === 'snackbar' ),
+				.filter( ( notice:any ) => notice.type === 'snackbar' ),
 		[]
 	);
 	const { removeNotice } = useDispatch( 'core/notices' );

@@ -13,6 +13,7 @@ import {
 	BlockEditorKeyboardShortcuts,
 	BlockEditorProvider,
 	BlockList,
+	BlockTools,
 	BlockInspector,
 	WritingFlow,
 	ObserveTyping,
@@ -21,13 +22,13 @@ import {
 /**
  * Internal dependencies
  */
-import Sidebar from 'components/sidebar';
+import Sidebar from '../sidebar';
 
-function BlockEditor({ settings: _settings }) {
+function BlockEditor({ settings: _settings }:any) {
 	const [blocks, updateBlocks] = useState([]);
 	const { createInfoNotice } = useDispatch('core/notices');
 
-	const canUserCreateMedia = useSelect((select) => {
+	const canUserCreateMedia = useSelect((select:any) => {
 		const _canUserCreateMedia = select('core').canUser('create', 'media');
 		return _canUserCreateMedia || _canUserCreateMedia !== false;
 	}, []);
@@ -38,7 +39,7 @@ function BlockEditor({ settings: _settings }) {
 		}
 		return {
 			..._settings,
-			mediaUpload({ onError, ...rest }) {
+			mediaUpload({ onError, ...rest }:any) {
 				uploadMedia({
 					wpAllowedMimeTypes: _settings.allowedMimeTypes,
 					onError: ({ message }) => onError(message),
@@ -69,13 +70,11 @@ function BlockEditor({ settings: _settings }) {
 	 * @param  blocks
 	 * @param  _blocks
 	 */
-	function handleUpdateBlocks(_blocks) {
-
+	function handleUpdateBlocks(_blocks:any) {
 		updateBlocks(_blocks);
 	}
 
-	function handlePersistBlocks(newBlocks) {
-		console.log("blk: ",newBlocks)
+	function handlePersistBlocks(newBlocks:any) {
 		updateBlocks(newBlocks);
 		window.localStorage.setItem('getdavesbeBlocks', serialize(newBlocks));
 	}
@@ -94,11 +93,13 @@ function BlockEditor({ settings: _settings }) {
 				</Sidebar.InspectorFill>
 				<div className="editor-styles-wrapper">
 					<BlockEditorKeyboardShortcuts.Register />
-					<WritingFlow>
-						<ObserveTyping>
-							<BlockList className="getdavesbe-block-editor__block-list" />
-						</ObserveTyping>
-					</WritingFlow>
+					<BlockTools>
+						<WritingFlow>
+							<ObserveTyping>
+								<BlockList className="getdavesbe-block-editor__block-list" />
+							</ObserveTyping>
+						</WritingFlow>
+					</BlockTools>
 				</div>
 			</BlockEditorProvider>
 		</div>
