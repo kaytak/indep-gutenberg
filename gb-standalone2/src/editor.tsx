@@ -23,6 +23,7 @@ import Sidebar from './components/sidebar';
 import BlockEditor from './components/block-editor';
 
 import './styles.scss';
+import './core.scss'
 
 function MyEditorComponent({ settings }:any) {
 	return (

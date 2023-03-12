@@ -1,0 +1,8 @@
+/* Core Gutenberg styles for clients that aren't loading WordPress CSS */
+@import 'node_modules/@wordpress/components/build-style/style';
+@import 'node_modules/@wordpress/block-editor/build-style/style';
+@import 'node_modules/@wordpress/block-library/build-style/style';
+@import 'node_modules/@wordpress/block-library/build-style/editor';
+@import 'node_modules/@wordpress/block-library/build-style/theme';
+@import 'node_modules/@wordpress/format-library/build-style/style';
+@import 'node_modules/@wordpress/edit-post/build-style/style';

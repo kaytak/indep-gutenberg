@@ -15,6 +15,7 @@
     "@wordpress/components": "^23.5.0",
     "@wordpress/core-data": "^6.5.0",
     "@wordpress/data": "^8.5.0",
+    "@wordpress/edit-post": "^7.5.0",
     "@wordpress/editor": "^13.5.0",
     "@wordpress/element": "^5.5.0",
     "@wordpress/format-library": "^4.5.0",
@@ -34,6 +35,7 @@
     "@types/wordpress__media-utils": "^4.14.0",
     "@vitejs/plugin-react": "^3.1.0",
     "@wordpress/base-styles": "^4.19.0",
+    "postcss": "^8.4.21",
     "sass": "^1.59.2",
     "typescript": "^4.9.3",
     "vite": "^4.1.0"
