@@ -27,9 +27,9 @@ import metadata from './block.json';
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 export function regist1(){
+	customElements.define('my-element', MyElement);
 
-
-registerBlockType( metadata, {
+registerBlockType( metadata as any, {
 	/**
 	 * @see ./edit.js
 	 */
@@ -41,3 +41,15 @@ registerBlockType( metadata, {
 	save,
 } );
 }
+
+
+class MyElement extends HTMLElement {
+	constructor() {
+	  super();
+	}
+
+	connectedCallback() {
+		this.innerHTML = '<h1>Hello, World!</h1>';
+	  }
+  }
+  

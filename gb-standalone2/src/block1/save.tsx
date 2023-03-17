@@ -5,6 +5,7 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 import { useBlockProps } from '@wordpress/block-editor';
+import { useState } from 'react';
 
 /**
  * The save function defines the way in which the different attributes should
@@ -16,9 +17,12 @@ import { useBlockProps } from '@wordpress/block-editor';
  * @return {WPElement} Element to render.
  */
 export default function save() {
+	//var {abc}=useState("a")
 	return (
 		<p { ...useBlockProps.save() }>
-			{ 'Math Block – hello from the saved content!' }
+			Math Block  hello from the saved content!
+			
 		</p>
+		
 	);
 }

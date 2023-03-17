@@ -32,7 +32,8 @@ import './editor.scss';
 export default function Edit() {
 	return (
 		<p { ...useBlockProps() }>
-			{ __( 'Math Block – hello from the editor!', 'math-block' ) }
+			Math Block  hello from the editor! 2
+			<my-element />
 		</p>
 	);
 }
