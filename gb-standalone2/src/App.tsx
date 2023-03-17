@@ -11,16 +11,10 @@ import {
 
 import "typeface-rubik";
 import "@fontsource/ibm-plex-mono";
+import { firebaseConfig } from "./firebaseConfig";
 
 // TODO: Replace with your config
-const firebaseConfig = {
-    apiKey: "",
-    authDomain: "",
-    projectId: "",
-    storageBucket: "",
-    messagingSenderId: "",
-    appId: ""
-};
+
 
 const locales = {
     "en-US": "English (United States)",
