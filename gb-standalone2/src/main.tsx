@@ -17,6 +17,7 @@ const settings = window.getdaveSbeSettings || {};
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     
-    <MyEditorComponent />
+    <App></App>
   </React.StrictMode>,
 )
+//<MyEditorComponent />
