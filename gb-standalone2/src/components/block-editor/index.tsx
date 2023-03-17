@@ -77,6 +77,7 @@ function BlockEditor({ settings: _settings }:any) {
 	function handlePersistBlocks(newBlocks:any) {
 		updateBlocks(newBlocks);
 		window.localStorage.setItem('getdavesbeBlocks', serialize(newBlocks));
+		console.log(newBlocks[1],serialize(newBlocks[1]))
 	}
 
 	return (
