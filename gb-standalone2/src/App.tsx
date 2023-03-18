@@ -5,6 +5,7 @@ import {
     Authenticator,
     buildCollection,
     buildProperty,
+    CMSView,
     EntityReference,
     FirebaseCMSApp
 } from "firecms";
@@ -12,6 +13,9 @@ import {
 import "typeface-rubik";
 import "@fontsource/ibm-plex-mono";
 import { firebaseConfig } from "./firebaseConfig";
+import MyEditorComponent from "./editor";
+import { ExampleCMSView } from "./ExampleCMSView";
+import { GbCMSView } from "./GbCMSView";
 
 // TODO: Replace with your config
 
@@ -22,10 +26,11 @@ const locales = {
     "de-DE": "German"
 };
 
-type Product = {
+export type Product = {
     name: string;
     price: number;
     status: string;
+    gold_text:any;
     published: boolean;
     related_products: EntityReference[];
     main_image: string;
@@ -70,7 +75,7 @@ const localeCollection = buildCollection({
 const productsCollection = buildCollection<Product>({
     name: "Products",
     singularName: "Product",
-    path: "products",
+    path: "test_product",
     permissions: ({ authController }) => ({
         edit: true,
         create: true,
@@ -108,6 +113,16 @@ const productsCollection = buildCollection<Product>({
                 public: "Public"
             }
         },
+        gold_text: {
+          name: "Gold text",
+          description: "This field is using a custom component defined by the developer",
+          dataType: "string",
+          //Field: MyEditorComponent,
+          Preview:MyEditorComponent,
+          customProps: {
+              color: "gold"
+          }
+      },
         published: ({ values }) => buildProperty({
             name: "Published",
             dataType: "boolean",
@@ -127,7 +142,7 @@ const productsCollection = buildCollection<Product>({
             description: "Reference to self",
             of: {
                 dataType: "reference",
-                path: "products"
+                path: "test_product"
             }
         },
         main_image: buildProperty({ // The `buildProperty` method is a utility function used for type checking
@@ -193,6 +208,14 @@ const productsCollection = buildCollection<Product>({
 
 export default function App() {
 
+
+const customViews: CMSView[] = [{
+    path: "additional",
+    name: "Gutenberg View",
+    description: "This is an example of an additional view that is defined by the user",
+    // This can be any React component
+    view: <GbCMSView/>
+}];
     const myAuthenticator: Authenticator<FirebaseUser> = useCallback(async ({
                                                                     user,
                                                                     authController
@@ -216,5 +239,6 @@ export default function App() {
         authentication={myAuthenticator}
         collections={[productsCollection]}
         firebaseConfig={firebaseConfig}
+        views={customViews}
     />;
 }
