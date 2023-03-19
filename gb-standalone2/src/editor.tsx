@@ -8,7 +8,7 @@ import {
 } from '@wordpress/components';
 
 
-import { StrictMode } from '@wordpress/element';
+import { StrictMode, useEffect } from '@wordpress/element';
 //@ts-ignore
 import { FullscreenMode, InterfaceSkeleton } from '@wordpress/interface';
 //@ts-ignore
@@ -25,7 +25,8 @@ import BlockEditor from './components/block-editor';
 import './styles.scss';
 import './core.scss'
 
-function MyEditorComponent({ settings }:any) {
+function MyEditorComponent({ settings }:any,data:any) {
+	//useEffect(()=>{console.log(data)})
 	return (
 		<>
 			<StrictMode>
@@ -38,7 +39,7 @@ function MyEditorComponent({ settings }:any) {
 							content={
 								<>
 									<Notices />
-									<BlockEditor settings={settings} />
+									<BlockEditor settings={settings} data={data}/>
 								</>
 							}
 						/>

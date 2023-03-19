@@ -6,6 +6,7 @@ import MyEditorComponent from './editor';
 //import { MyEditorComponent } from './iso'
 import { registerCoreBlocks } from '@wordpress/block-library';
 import { regist1 } from './block1';
+import { RecoilRoot } from 'recoil';
 
 
 
@@ -16,8 +17,9 @@ const settings = window.getdaveSbeSettings || {};
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    
+    <RecoilRoot>
     <App></App>
+    </RecoilRoot>
   </React.StrictMode>,
 )
 //<MyEditorComponent />

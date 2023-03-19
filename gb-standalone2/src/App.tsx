@@ -14,8 +14,8 @@ import "typeface-rubik";
 import "@fontsource/ibm-plex-mono";
 import { firebaseConfig } from "./firebaseConfig";
 import MyEditorComponent from "./editor";
-import { ExampleCMSView } from "./ExampleCMSView";
-import { GbCMSView } from "./GbCMSView";
+//import { ExampleCMSView } from "./ExampleCMSView";
+import { articleCollection, GbCMSView } from "./GbCMSView";
 
 // TODO: Replace with your config
 
@@ -221,9 +221,9 @@ const customViews: CMSView[] = [{
                                                                     authController
                                                                 }) => {
 
-        if (user?.email?.includes("flanders")) {
-            throw Error("Stupid Flanders!");
-        }
+    //    if (user?.email?.includes("flanders")) {
+    //        throw Error("Stupid Flanders!");
+    //    }
 
         console.log("Allowing access to", user?.email);
         // This is an example of retrieving async data related to the user
@@ -235,9 +235,9 @@ const customViews: CMSView[] = [{
     }, []);
 
     return <FirebaseCMSApp
-        name={"My Online Shop"}
+        name={"My Guternberg on fireCMS"}
         authentication={myAuthenticator}
-        collections={[productsCollection]}
+        collections={[articleCollection]}
         firebaseConfig={firebaseConfig}
         views={customViews}
     />;

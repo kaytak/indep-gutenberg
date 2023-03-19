@@ -23,8 +23,11 @@ import {
  * Internal dependencies
  */
 import Sidebar from '../sidebar';
+import { useRecoilState } from 'recoil';
+import { gbgState } from '../../recoil';
 
-function BlockEditor({ settings: _settings }:any) {
+function BlockEditor({ settings: _settings }:any,data:any) {
+	const [gbg, setGbg] = useRecoilState(gbgState);
 	const [blocks, updateBlocks] = useState([]);
 	const { createInfoNotice } = useDispatch('core/notices');
 
@@ -50,7 +53,7 @@ function BlockEditor({ settings: _settings }:any) {
 	}, [canUserCreateMedia, _settings]);
 
 	useEffect(() => {
-		const storedBlocks = window.localStorage.getItem('getdavesbeBlocks');
+		/*const storedBlocks = window.localStorage.getItem('getdavesbeBlocks');
 
 		if (storedBlocks?.length) {
 			handleUpdateBlocks(() => parse(storedBlocks));
@@ -58,7 +61,18 @@ function BlockEditor({ settings: _settings }:any) {
 				type: 'snackbar',
 				isDismissible: true,
 			});
-		}
+		}*/
+		//setTimeout(() => {
+			
+
+		if (gbg._content?.length) {
+		handleUpdateBlocks(() => parse(gbg._content));
+		createInfoNotice('Blocks loaded', {
+			type: 'snackbar',
+			isDismissible: true,
+		});
+	   }
+	   //}, 3000);
 	}, []);
 
 	/**
@@ -77,7 +91,14 @@ function BlockEditor({ settings: _settings }:any) {
 	function handlePersistBlocks(newBlocks:any) {
 		updateBlocks(newBlocks);
 		window.localStorage.setItem('getdavesbeBlocks', serialize(newBlocks));
-		console.log(newBlocks[1],serialize(newBlocks[1]))
+		console.log(newBlocks[1],serialize(newBlocks[1]));
+		if(gbg){
+			var buf=JSON.parse(JSON.stringify(gbg));
+			buf._content=serialize(newBlocks)
+			setGbg(buf);
+			console.log("Buffer saved from firebase")
+		}
+		console.log(data)
 	}
 
 	return (
